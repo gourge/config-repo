@@ -1,9 +1,10 @@
 spring:
   application:
-    name: server
+    name: test
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7000/eureka/
-    register-with-eureka: false
+service:
+  port: 9000
 env: dev
