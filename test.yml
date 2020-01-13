@@ -7,5 +7,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 env: test
 girl:
-  name: lfq
+  name: zdd
   age: 15
