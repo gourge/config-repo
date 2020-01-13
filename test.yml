@@ -6,5 +6,5 @@ eureka:
     service-url:
       defaultZone: http://localhost:7000/eureka/
 service:
-  port: 9000
+  port: 9001
 env: dev
