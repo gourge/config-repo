@@ -6,6 +6,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: myQueue
+          group: myGroup
+          content-type: application/json
 eureka:
   client:
     service-url:
