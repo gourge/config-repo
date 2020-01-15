@@ -1,0 +1,7 @@
+zuul:
+  routes:
+    myMapper:
+      path: /myTest/**
+      serviceId: test
+  ignored-patterns:
+    - /**/girl
