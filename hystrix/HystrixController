@@ -1,0 +1,33 @@
+package com.springcloud.server.controller;
+
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+//默认所有降级方法为dealError
+@DefaultProperties(defaultFallback = "dealError")
+public class HystrixController {
+    @GetMapping("/test")
+    @HystrixCommand(commandProperties = {
+            //设置允许的超时时间
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"),
+            //开启熔断机制
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+            //在规定时间内，请求数超过10个时，打开熔断器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            //设置熔断器处于open状态的时间
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+            //出错百分比阈值，达到60%，打开熔断器
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),
+    })
+    public String test() {
+        throw new RuntimeException();
+    }
+
+    private String dealError() {
+        return "error";
+    }
+}
