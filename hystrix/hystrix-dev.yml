@@ -12,3 +12,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000
+#开启feign中整合的熔断器
+feign:
+  hystrix:
+    enabled: true
