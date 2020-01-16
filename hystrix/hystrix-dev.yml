@@ -1,0 +1,14 @@
+hystrix:
+  command:
+    #针对默认方法，即所有方法
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+    #针对具体一个方法，如getList方法
+    getList:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
